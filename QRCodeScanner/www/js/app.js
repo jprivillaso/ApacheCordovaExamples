@@ -4,9 +4,9 @@
         $("#results").text(result.text);
     };
 
-	var errorFn = function(error){
-	    $("#errorMessage").text("Error: " + error);
-	};
+    var errorFn = function(error){
+        $("#errorMessage").text("Error: " + error);
+    };
 
     var startScan = function(){
 		
@@ -15,32 +15,32 @@
 
     }
 
-	var createMap = function(){
+    var createMap = function(){
 
-        var map = plugin.google.maps.Map.getMap($("map"));
-	  	var coordinate = $("#results").text().split(",");	
-	  	var longitude = coordinate[0].trim();	
-	  	var latitude = coordinate[1].trim();	
+    var map = plugin.google.maps.Map.getMap($("map"));
+    var coordinate = $("#results").text().split(",");	
+    var longitude = coordinate[0].trim();	
+    var latitude = coordinate[1].trim();	
 
-		if (isFinite(longitude) && isFinite(latitude)) {
+    if (isFinite(longitude) && isFinite(latitude)) {
 
-			var coordinates = new plugin.google.maps.LatLng(longitude, latitude);
+        var coordinates = new plugin.google.maps.LatLng(longitude, latitude);
 
-			map.addMarker({
-			  'position': coordinates,
-			  'draggable': true
-			});
+        map.addMarker({
+            'position': coordinates,
+            'draggable': true
+        });
 
-			map.showDialog();
+        map.showDialog();
 
-		} else {
+    } else {
 
-			$("#errorMessage").show();
-			$("#errorMessage").text("Error parsing the points");
+        $("#errorMessage").show();
+        $("#errorMessage").text("Error parsing the points");
 
-		}
+    }
 			
-	};
+    };
 
     var bindingEvents = function() {
        
@@ -48,8 +48,8 @@
             startScan();
     	}); 
 
-		$("#displayPoint").on("tap", function() {
-			createMap();
+	$("#displayPoint").on("tap", function() {
+	    createMap();
     	}); 
 
     };

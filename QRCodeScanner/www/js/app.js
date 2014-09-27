@@ -9,7 +9,10 @@
 	};
 
     var startScan = function(){
+		
+		$("#errorMessage").hide();	
 		cordova.plugins.barcodeScanner.scan(successFn, errorFn);
+
 	}
 
 	var createMap = function(){
@@ -32,7 +35,10 @@
 			map.showDialog();
 
 		} else {
+
+			$("#errorMessage").show();
 			$("#errorMessage").text("Error parsing the points");
+
 		}
 			
 	};

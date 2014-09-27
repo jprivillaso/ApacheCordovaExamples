@@ -1,19 +1,19 @@
 (function() {
 	
     var successFn = function(result) {
-	    $("#results").text(result.text);
-	};
+        $("#results").text(result.text);
+    };
 
-	var errorFn = function(error){
-	    $("#errorMessage").text(error);
-	};
+    var errorFn = function(error){
+        $("#errorMessage").text(error);
+    };
 
     var startScan = function(){
 		
-	    $("#errorMessage").hide();	
-	    cordova.plugins.barcodeScanner.scan(successFn, errorFn);
+        $("#errorMessage").hide();	
+        cordova.plugins.barcodeScanner.scan(successFn, errorFn);
 
-	}
+    }
 
 	var createMap = function(){
 

@@ -5,7 +5,7 @@
 	};
 
 	var errorFn = function(error){
-	    $("#errorMessage").text(error);
+	    $("#errorMessage").text("Error: " + error);
 	};
 
     var startScan = function(){

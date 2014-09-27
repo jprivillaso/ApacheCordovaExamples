@@ -5,12 +5,37 @@
 	};
 
 	var errorFn = function(error){
-		alert("Scanning failed: " + error);
+		$("#errorMessage").text(error);
 	};
 
     var startScan = function(){
 		cordova.plugins.barcodeScanner.scan(successFn, errorFn);
 	}
+
+	var createMap = function(){
+
+	  	var map = plugin.google.maps.Map.getMap($("map"));
+
+	  	var coordinate = $("#results").text().split(",");	
+	  	var longitude = coordinate[0].trim();	
+	  	var latitude = coordinate[1].trim();	
+
+		if (isFinite(longitude) && isFinite(latitude)) {
+
+			var coordinates = new plugin.google.maps.LatLng(longitude, latitude);
+
+			map.addMarker({
+			  'position': coordinates,
+			  'draggable': true
+			});
+
+			map.showDialog();
+
+		} else {
+			$("#errorMessage").text("Error parsing the points");
+		}
+			
+	};
 
     var bindingEvents = function() {
        
@@ -19,23 +44,7 @@
     	}); 
 
 		$("#displayPoint").on("tap", function() {
-        	
-           	var div = document.getElementById("map");
-		  	var map = plugin.google.maps.Map.getMap(div);
-
-		  	var coordinate = $("#results").text().split(",");	
-		  	var longitude = coordinate[0].trim();	
-		  	var latitude = coordinate[1].trim();	
-
-	      	const GOOGLE = new plugin.google.maps.LatLng(longitude, latitude);
-
-			map.addMarker({
-			  'position': GOOGLE,
-			  'draggable': true
-			});
-
-			map.showDialog();
-
+			createMap();
     	}); 
 
     };

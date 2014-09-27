@@ -17,8 +17,7 @@
 
 	var createMap = function(){
 
-	  	var map = plugin.google.maps.Map.getMap($("map"));
-
+        var map = plugin.google.maps.Map.getMap($("map"));
 	  	var coordinate = $("#results").text().split(",");	
 	  	var longitude = coordinate[0].trim();	
 	  	var latitude = coordinate[1].trim();	
